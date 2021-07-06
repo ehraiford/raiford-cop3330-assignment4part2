@@ -101,7 +101,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="loadList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" promptText="LIST NAME" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <TextField fx:id="listTitle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" promptText="LIST NAME" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadAllClicked" prefWidth="170.0" text="Load All Lists" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font size="18.0" />

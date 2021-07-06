@@ -2,10 +2,20 @@
 'https://plantuml.com/class-diagram
 ToDoList*-ToDoItem
 ListCollection*-ToDoList
-javafx.Application<|-- ListCollection
+javafx.Application<|-- Controller
 Controller-- ListCollection
 
 class Controller{
+
+    String existingDescription;
+    String existingDueDate;
+    String listTitle;
+    String originalDescription;
+    String display;
+    boolean existingCompleted;
+    String newDescription;
+    String newDueDate;
+    boolean newCompleted;
 
     loadListClicked()
     newListClicked()
@@ -20,7 +30,10 @@ class Controller{
     displayCompleted()
     displayIncomplete()
     stopEditing()
-
+    removeItem()
+    addItem()
+    editClicked()
+    editTitle()
 
 }
 class ListCollection{

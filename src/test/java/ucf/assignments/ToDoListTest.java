@@ -123,4 +123,15 @@ class ToDoListTest {
         //assert that displayAll of object returns a string identical to information string
     }
 
+    @Test
+    void sortList_sorts_by_date(){
+        //create new ToDoList()
+        //create new item with far away date and add it to list
+        //create new item with soon date and add it to list
+        //create new item with middle date and add it to list
+        //call sortList function
+        //create String expected with the info of the items in the correct order by date
+        //assert that the displayAll function return value is the same as expected String
+    }
+
 }

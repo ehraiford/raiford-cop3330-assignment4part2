@@ -55,6 +55,5 @@ class ListCollectionTest {
         //call readMultipleFromFile reading textFile
         //create a string actual of the displayAll for all the ToDoLists in ListCollection
         //assert that actual is the same as information
-
     }
 }

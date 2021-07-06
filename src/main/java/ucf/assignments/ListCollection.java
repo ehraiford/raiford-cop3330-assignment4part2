@@ -25,24 +25,10 @@ public class ListCollection {
     }
 
     void readMultipleFromFile(){
-        //while true loop
-            //open textFile
-            //ask user what is the name of the list they want to load from the file or if they want to load all lists
-            //set string response to user's input
-            //if user input "ALL", "all", or "All"
-                //while textFile hasNext() is true
-                    //create new ToDoList
-                    //call readFromFile for the new ToDoList
-                    //call addList and add ToDoList to ListCollection's toToLists
-                //return from Function
-            //while (textFile hasNext() is true
-                 //if(textFile nextLine() is the same as user's input
-                    //create new ToDoList
-                    //call readFromFile for the new ToDoList
-                    //call addList and add ToDoList to ListCollection's toToLists
-                    //break while loop
-            //ask user if they want to load another list from the file
-            //if user input is "no", "n", "NO", or "No", break
+        //while textFile hasNext() is true
+            //create new ToDoList
+            //call readFromFile for the new ToDoList
+            //call addList and add ToDoList to ListCollection's toToLists
     }
 
     int findListSpot(String listTitle){
