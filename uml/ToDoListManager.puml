@@ -6,6 +6,22 @@ javafx.Application<|-- ListCollection
 Controller-- ListCollection
 
 class Controller{
+
+    loadListClicked()
+    newListClicked()
+    loadAllClicked()
+    loadListFile()
+    editListClicked()
+    editGivenList()
+    removeList()
+    saveList()
+    saveAllLists()
+    displayAll()
+    displayCompleted()
+    displayIncomplete()
+    stopEditing()
+
+
 }
 class ListCollection{
     lists : ArrayList<ToDoList>
@@ -31,6 +47,7 @@ class ToDoList{
     readFromFile()
     sortList()
     findItemSpot()
+    displayAll()
 }
 
 class ToDoItem{

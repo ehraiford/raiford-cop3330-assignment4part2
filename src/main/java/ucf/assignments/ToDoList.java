@@ -36,9 +36,19 @@ public class ToDoList {
         //output that the item was removed
     }
 
-    void displayCompleteness(boolean completeness){
+    String displayAll(){
+        //create string object
         //for loop going through entire arrayList
-            //if an item's completed boolean matches completeness, output that items displayInfo()
+            //add item's displayInfo() to string
+        //return string
+        return "";
+    }
+    String displayCompleteness(boolean completeness){
+        //create string object
+        //for loop going through entire arrayList
+            //if an item's completed boolean matches completeness, add that items displayInfo() to string
+        //return string
+        return " ";
     }
 
     void saveToFile(File textFile){

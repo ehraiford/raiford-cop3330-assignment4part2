@@ -12,9 +12,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Controller  extends App{
+
+    String existingDescription;
+    String existingDueDate;
+    String listTitle;
+    String originalDescription;
+    String display;
+    String newDescription;
+    String newDueDate;
 
     public void loadListClicked(ActionEvent actionEvent) throws Exception {
         Parent loadingList = FXMLLoader.load(getClass().getResource("LoadingLists.fxml"));
@@ -72,12 +78,15 @@ public class Controller  extends App{
     }
 
     public void displayAll(ActionEvent actionEvent) {
+        //call displayAll function for the toDoList
     }
 
     public void displayCompleted(ActionEvent actionEvent) {
+        //call displayCompleteness function passing in value true
     }
 
     public void DisplayIncomplete(ActionEvent actionEvent) {
+        //call displayCompleteness function passing in value false
     }
 
     public void stopEditing(ActionEvent actionEvent) throws Exception {
