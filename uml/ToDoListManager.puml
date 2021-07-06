@@ -1,14 +1,20 @@
 @startuml
 'https://plantuml.com/class-diagram
-ToDoList*--ToDoItem
+ToDoList*-ToDoItem
 ListCollection*-ToDoList
+javafx.Application<|-- ListCollection
+Controller-- ListCollection
+
+class Controller{
+}
 class ListCollection{
     lists : ArrayList<ToDoList>
 
     addList()
     removeList()
-    saveMultipleToFile()
-    readMultipleToFile()
+    saveAllToFile()
+    readMultipleFromFile()
+    findListSpot()
 }
 
 class ToDoList{
@@ -20,11 +26,11 @@ class ToDoList{
     getItems()
     addItem()
     removeItem()
-    displayComplete()
-    displayIncomplete()
+    displayCompleteness()
     saveToFile()
     readFromFile()
     sortList()
+    findItemSpot()
 }
 
 class ToDoItem{
@@ -39,6 +45,7 @@ class ToDoItem{
     getDueDate()
     setDueDate()
     displayInfo()
+    confirmFormat()
 }
 
 @enduml
