@@ -1,49 +1,11 @@
 @startuml
 'https://plantuml.com/class-diagram
 ToDoList*-ToDoItem
-ListCollection*-ToDoList
 javafx.Application<|-- Controller
-Controller-- ListCollection
-
+Controller-- ToDoList
+ToDoItem<|- Date
 class Controller{
 
-    String existingDescription;
-    String existingDueDate;
-    String listTitle;
-    String originalDescription;
-    String display;
-    boolean existingCompleted;
-    String newDescription;
-    String newDueDate;
-    boolean newCompleted;
-
-    loadListClicked()
-    newListClicked()
-    loadAllClicked()
-    loadListFile()
-    editListClicked()
-    editGivenList()
-    removeList()
-    saveList()
-    saveAllLists()
-    displayAll()
-    displayCompleted()
-    displayIncomplete()
-    stopEditing()
-    removeItem()
-    addItem()
-    editClicked()
-    editTitle()
-
-}
-class ListCollection{
-    lists : ArrayList<ToDoList>
-
-    addList()
-    removeList()
-    saveAllToFile()
-    readMultipleFromFile()
-    findListSpot()
 }
 
 class ToDoList{
@@ -61,12 +23,13 @@ class ToDoList{
     sortList()
     findItemSpot()
     displayAll()
+    clearList()
 }
 
 class ToDoItem{
     completed : boolean
     description : String
-    dueDate : String
+    dueDate : Date
 
     getCompleted()
     setCompleted()
@@ -75,7 +38,24 @@ class ToDoItem{
     getDueDate()
     setDueDate()
     displayInfo()
-    confirmFormat()
+
 }
 
+class Date{
+    date : String
+    year : int
+    month : int
+    day : int
+
+    getDate()
+    setDate()
+    getYear()
+    setYear()
+    getDay()
+    setDate()
+    getMonth()
+    setMonth()
+    confirmFormat()
+    confirmValidDate()
+}
 @enduml

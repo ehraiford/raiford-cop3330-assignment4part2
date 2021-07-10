@@ -43,16 +43,38 @@ class ToDoListTest {
     void displayAll_displays_all_items_in_list(){
         //tests requirement 14
         //create new ToDoList object
+        ToDoList list = new ToDoList();
         //create new ToDoListItem A
+        ToDoItem a = new ToDoItem();
+        Date da = new Date();
+        da.setDate("1942-06-30");
+        a.setDescription("A");
+        a.setDueDate(da);
+        a.setCompleted(false);
         //create new ToDOListItem B
+        ToDoItem b = new ToDoItem();
+        Date db = new Date();
+        db.setDate("2015-03-24");
+        b.setCompleted(true);
+        b.setDescription("B");
+        b.setDueDate(db);
         //create new ToDoListItem C
+        ToDoItem c = new ToDoItem();
+        Date dc = new Date();
+        dc.setDate("1994-03-10");
+        c.setDueDate(dc);
+        c.setCompleted(true);
+        c.setDescription("C");
         //addItem A to list
+        list.addItem(a);
         //addItem B to list
+        list.addItem(b);
         //addItem C to list
-
+        list.addItem(c);
         //create String literal with the expected formatted output of the three items
-
+        String expected = "A\n1942-06-30    Incomplete\nB\n2015-03-24    Completed\nC\n1994-03-10    Completed\n";
         //assert that the literal is the same as the return string from displayAll
+        assertTrue(expected.compareTo(list.displayAll()) == 0);
     }
 
     @Test

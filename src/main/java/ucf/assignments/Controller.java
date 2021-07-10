@@ -5,28 +5,37 @@
 
 package ucf.assignments;
 
+import java.io.File;
+import java.io.FileWriter;
+
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Controller  extends App{
-    //create variables to be displayed in text fields in GUI
-//    String existingDescription;
-//    String existingDueDate;
-//    String listTitle;
-//    String originalDescription;
-//    String display;
-//    boolean existingCompleted;
-//    String newDescription;
-//    String newDueDate;
-//    boolean newCompleted;
+
+    @FXML TextField dueDate;
+    @FXML CheckBox completed;
+    @FXML TextField itemDescription;
+    @FXML TextField titleInput;
+    @FXML TextArea displayArea;
+    @FXML TextField result;
+
+    ToDoList list = new ToDoList();
+
+    @FXML  void createList(ActionEvent actionEvent) throws Exception {
 
 
-    public void loadListClicked(ActionEvent actionEvent) throws Exception {
-        Parent loadingList = FXMLLoader.load(getClass().getResource("LoadingLists.fxml"));
+        Parent loadingList = FXMLLoader.load(getClass().getResource("CreateList.fxml"));
         Scene loadScene = new Scene(loadingList);
 
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
@@ -35,7 +44,25 @@ public class Controller  extends App{
         window.show();
     }
 
-    public void newListClicked(ActionEvent actionEvent) throws Exception {
+    @FXML void createListObject(ActionEvent actionEvent) throws Exception {
+        if (titleInput.getText().length() > 0) {
+            FileWriter writeData = new FileWriter("tempData.txt");
+            writeData.write(titleInput.getText());
+            writeData.close();
+            list.setTitle(titleInput.getText());
+
+            displayArea.setText(titleInput.getText());
+
+            mainScreen(actionEvent);
+
+        }
+    }
+    @FXML public void mainScreen(ActionEvent actionEvent) throws Exception {
+
+        File data = new File("tempData.txt");
+        list.readFromFile(data);
+
+
         Parent loadingList = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene loadScene = new Scene(loadingList);
 
@@ -43,18 +70,13 @@ public class Controller  extends App{
 
         window.setScene(loadScene);
         window.show();
+
     }
 
-    public void loadAllClicked(ActionEvent actionEvent) {
-        //call readMultipleFromFile
-    }
 
-    public void loadListFile(ActionEvent actionEvent) {
-        //call readFromFile function for toDoList
-    }
-
-    public void EditListClicked(ActionEvent actionEvent) throws Exception {
-        Parent loadingList = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+    @FXML public void addItemScreen(ActionEvent actionEvent) throws Exception {
+        File data = new File("tempData.txt");
+        Parent loadingList = FXMLLoader.load(getClass().getResource("AddItem.fxml"));
         Scene loadScene = new Scene(loadingList);
 
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
@@ -63,77 +85,52 @@ public class Controller  extends App{
         window.show();
     }
 
-    public void editGivenList(ActionEvent actionEvent) throws Exception {
-        Parent loadingList = FXMLLoader.load(getClass().getResource("EditList.fxml"));
-        Scene loadScene = new Scene(loadingList);
-
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(loadScene);
-        window.show();
+    @FXML void addItem(ActionEvent actionEvent) {
+            //create new ToDoItem with info put into fields on GUI
+        Date date = new Date();
+        if(date.confirmFormat(dueDate.getText()) && date.confirmValidDate(dueDate.getText()) && !list.containsSameNameItem(itemDescription.getText())) {
+            date.setDate(dueDate.getText());
+            ToDoItem item = new ToDoItem();
+            item.setDescription(itemDescription.getText());
+            item.setDueDate(date);
+            item.setCompleted(completed.isSelected());
+            //call addItem adding to ToDoList
+            list.addItem(item);
+            displayArea.setText(list.displayAll());
+            result.setText("Item added.");
+        }else result.setText("Unable to add Item.");
     }
 
-    public void removeList(ActionEvent actionEvent) {
-        //call removeList with given listTitle
+    @FXML void editItem(ActionEvent actionEvent) {
+
     }
 
-    public void saveList(ActionEvent actionEvent) {
+    @FXML void editList(ActionEvent actionEvent) {
+    }
+
+    @FXML void help(ActionEvent actionEvent) {
+    }
+
+   @FXML public void saveList(ActionEvent actionEvent) {
         //call findListSpot with given listTitle
         //call saveToFile for that list
     }
 
-    public void SaveAllLists(ActionEvent actionEvent) {
-        //call saveAllToFile
-    }
-
-    public void displayAll(ActionEvent actionEvent) {
+    @FXML void displayAll(ActionEvent actionEvent) {
         //call displayAll function for the toDoList
+        System.out.println(list.displayAll());
+        displayArea.setText(list.displayAll());
     }
 
-    public void displayCompleted(ActionEvent actionEvent) {
+    @FXML void displayCompleted(ActionEvent actionEvent) {
         //call displayCompleteness function passing in value true
     }
 
-    public void DisplayIncomplete(ActionEvent actionEvent) {
+    @FXML void DisplayIncomplete(ActionEvent actionEvent) {
         //call displayCompleteness function passing in value false
     }
 
-    public void stopEditing(ActionEvent actionEvent) throws Exception {
-        Parent loadingList = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-        Scene loadScene = new Scene(loadingList);
-
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(loadScene);
-        window.show();
+    @FXML void loadList(ActionEvent actionEvent) {
     }
 
-    public void removeItem(ActionEvent actionEvent) {
-        //call findListSpot for given listTitle
-        //call removeItem for given item Description
-    }
-
-    public void addItem(ActionEvent actionEvent) {
-        //call findListSpot for given listTitle
-        //create new ToDoItem with info put into fields on GUI
-        //call addItem adding to ToDoList
-    }
-
-    public void editClicked(ActionEvent actionEvent) {
-        //call findListSpot looking for given listTitle
-        //call findItemSpot looking for given itemDescription
-        //call setCompleted for given boolean
-        //call setDueDate for given dueDate
-        //call setDescription for give description
-    }
-
-    public void editTitle(ActionEvent actionEvent) {
-        //call findListSpot for original title
-        //call setTitle with new title
-    }
-
-    public void sortList(ActionEvent actionEvent) {
-        //call findListSpot for given title
-        //call sortList function for thatToDoList
-    }
 }
