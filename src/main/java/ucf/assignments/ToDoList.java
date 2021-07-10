@@ -72,7 +72,7 @@ public class ToDoList {
         for(int i = 0; i< this.items.size(); i++) {
             //if an item's completed boolean matches completeness, add that items displayInfo() to string
             if(this.items.get(i).completed == completeness)
-                display = display + this.items.get(i).getDescription();
+                display = display + this.items.get(i).displayInfo();
         }
         //return string
         return display;

@@ -48,12 +48,18 @@ public class Controller2 {
     }
 
     public void displayIncomplete(ActionEvent actionEvent) {
+        //call displayCompleteness passing in false and set displayArea as it.
+        displayArea.setText(list.displayCompleteness(false));
     }
 
     public void displayComplete(ActionEvent actionEvent) {
+        //call displayCompleteness passing in true and set displayArea as it
+       displayArea.setText(list.displayCompleteness(true));
     }
 
     public void displayAll(ActionEvent actionEvent) {
+        //call displayAll for list and set displayArea as it
+        displayArea.setText(list.displayAll());
     }
 
     public void setTitle(ActionEvent actionEvent) {
