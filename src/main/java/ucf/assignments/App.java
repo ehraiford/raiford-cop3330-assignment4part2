@@ -15,7 +15,7 @@ public class App extends Application {
 
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("V2ToDoLists.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SingleScreen.fxml"));
 
         Scene scene = new Scene(root);
 
