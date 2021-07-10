@@ -15,9 +15,15 @@ public class ToDoList {
     private String title;
     //array list of the items on the to do list
     private ArrayList<ToDoItem> items = new ArrayList<>();
-
+    //int for number of items in list.
     private int numItems;
 
+    public int getNumItems() {
+        return numItems;
+    }
+    public void setNumItems(int numItems) {
+        this.numItems = numItems;
+    }
     void setTitle(String input){
         //set this list's title to the input to the function
         this.title = input;
@@ -65,6 +71,7 @@ public class ToDoList {
         //return string
         return display;
     }
+
     String displayCompleteness(boolean completeness){
         //create string object
         String display = "";
@@ -72,7 +79,7 @@ public class ToDoList {
         for(int i = 0; i< this.items.size(); i++) {
             //if an item's completed boolean matches completeness, add that items displayInfo() to string
             if(this.items.get(i).completed == completeness)
-                display = display + this.items.get(i).displayInfo();
+                display = display + this.items.get(i).displayInfo() + "\n";
         }
         //return string
         return display;

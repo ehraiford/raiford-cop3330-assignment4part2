@@ -45,21 +45,30 @@ public class Controller2 {
     }
 
     public void clearAllItems(ActionEvent actionEvent) {
+        //if statement ensuring items are in the list.
+        if (list.getNumItems() > 0) {
+            //for loop for number of items in list and remove item at ticker until they are all gone
+            for (int ticker = list.getNumItems() - 1; ticker > -1; ticker--) {
+                list.getItems().remove(ticker);
+            }
+            //set display area saying items were removed.
+            displayArea.setText("All Items removed.");
+        }
     }
 
     public void displayIncomplete(ActionEvent actionEvent) {
         //call displayCompleteness passing in false and set displayArea as it.
-        displayArea.setText(list.displayCompleteness(false));
+        displayArea.setText("To Do List:    " + list.getTitle() + "\n\n" + list.displayCompleteness(false));
     }
 
     public void displayComplete(ActionEvent actionEvent) {
         //call displayCompleteness passing in true and set displayArea as it
-       displayArea.setText(list.displayCompleteness(true));
+       displayArea.setText("To Do List:    " + list.getTitle() + "\n\n" + list.displayCompleteness(true));
     }
 
     public void displayAll(ActionEvent actionEvent) {
         //call displayAll for list and set displayArea as it
-        displayArea.setText(list.displayAll());
+        displayArea.setText("To Do List:    " + list.getTitle() + "\n\n" + list.displayCompleteness(true));
     }
 
     public void setTitle(ActionEvent actionEvent) {
