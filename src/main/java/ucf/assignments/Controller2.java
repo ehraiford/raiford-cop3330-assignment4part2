@@ -22,6 +22,10 @@ public class Controller2 {
     }
 
     public void displaySort(ActionEvent actionEvent) {
+        //call sort method in list.
+        list.sortList();
+        //display updated sorted list in displayArea
+        displayAll(actionEvent);
     }
 
     public void editItem(ActionEvent actionEvent) {
@@ -68,7 +72,7 @@ public class Controller2 {
 
     public void displayAll(ActionEvent actionEvent) {
         //call displayAll for list and set displayArea as it
-        displayArea.setText("To Do List:    " + list.getTitle() + "\n\n" + list.displayCompleteness(true));
+        displayArea.setText("To Do List:    " + list.getTitle() + "\n\n" + list.displayAll());
     }
 
     public void setTitle(ActionEvent actionEvent) {
