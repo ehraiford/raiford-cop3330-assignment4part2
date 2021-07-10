@@ -28,17 +28,14 @@ public class ToDoList {
         //set this list's title to the input to the function
         this.title = input;
     }
-
     String getTitle(){
         //return title of this list
         return this.title;
     }
-
     ArrayList getItems(){
         //return this object's list of items
         return this.items;
     }
-
     void addItem(ToDoItem addedItem){
         //add given item to the array list of items
         this.items.add(addedItem);
@@ -153,14 +150,6 @@ public class ToDoList {
         }
         //if for loop ends without finding the item, return -1
         return -1;
-    }
-
-    boolean containsSameNameItem(String compare){
-        for(int ticker = 0; ticker < this.getItems().size(); ticker++){
-            if(this.items.get(ticker).getDescription().compareTo(compare) == 0)
-                return true;
-        }
-        return false;
     }
 
     String displayInfo(){

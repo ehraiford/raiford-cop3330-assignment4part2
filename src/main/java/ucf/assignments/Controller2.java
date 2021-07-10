@@ -19,6 +19,8 @@ public class Controller2 {
     ToDoList list = new ToDoList();
 
     public void removeItem(ActionEvent actionEvent) {
+        //call remove item method in list and display the resulting string to display area
+        displayArea.setText(list.removeItem(editOrigDesc.getText()));
     }
 
     public void displaySort(ActionEvent actionEvent) {
@@ -35,7 +37,7 @@ public class Controller2 {
         //create date object
         Date date = new Date();
         //if the item isn't already in the list and the date is valid, create an item from the data and add it to the list
-        if(!list.containsSameNameItem(addDesc.getText()) && date.confirmValidDate(addDate.getText())){
+        if(list.findItemSpot(addDesc.getText()) != -1 && date.confirmValidDate(addDate.getText())){
             ToDoItem item = new ToDoItem();
             item.setCompleted(addComplete.isSelected());
             item.setDescription(addDesc.getText());
