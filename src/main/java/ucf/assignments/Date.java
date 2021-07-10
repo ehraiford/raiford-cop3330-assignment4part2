@@ -32,6 +32,10 @@ public class Date {
     }
 
     boolean confirmValidDate(String date){
+
+        if(date.length()!=10 || date.charAt(4) != '-' || date.charAt(7) != '-')
+            return false;
+
         int year = Integer.valueOf(date.substring(0, 4));
         int month = Integer.valueOf(date.substring(5, 7));
         int day = Integer.valueOf(date.substring(8, 10));
@@ -48,18 +52,6 @@ public class Date {
         }else if(month == 2 && day > 29)
             return false;
 
-        return true;
-    }
-
-    boolean confirmFormat(String date){
-        //set boolean checker to true
-        //set checker to false if date length is not 10
-        //set checker to false if fifth char or eighth char is not a hyphen
-        if(date.length()!=10 || date.charAt(4) != '-' || date.charAt(7) != '-')
-            return false;
-        //set checker to false if integer equivalent of the month part of date is greater than 12
-        //set checker to false if integer equivalent of the day of month is greater than 31
-        //return checker
         return true;
     }
 }

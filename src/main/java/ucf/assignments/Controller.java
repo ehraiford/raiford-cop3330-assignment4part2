@@ -89,7 +89,7 @@ public class Controller  extends App{
 
     @FXML void addItem(ActionEvent actionEvent) throws IOException {
         Date date = new Date();
-        if(date.confirmFormat(dueDate.getText()) && date.confirmValidDate(dueDate.getText()) && !list.containsSameNameItem(itemDescription.getText())) {
+        if(date.confirmValidDate(dueDate.getText()) && date.confirmValidDate(dueDate.getText()) && !list.containsSameNameItem(itemDescription.getText())) {
             File data = new File("tempData.txt");
             list.readFromFile(data);
             date.setDate(dueDate.getText());

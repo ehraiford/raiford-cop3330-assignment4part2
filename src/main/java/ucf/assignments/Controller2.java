@@ -28,9 +28,20 @@ public class Controller2 {
     }
 
     public void addItem(ActionEvent actionEvent) {
-        if(!list.containsSameNameItem(addDesc.getText()) && ){
-
-        }
+        //create date object
+        Date date = new Date();
+        //if the item isn't already in the list and the date is valid, create an item from the data and add it to the list
+        if(!list.containsSameNameItem(addDesc.getText()) && date.confirmValidDate(addDate.getText())){
+            ToDoItem item = new ToDoItem();
+            item.setCompleted(addComplete.isSelected());
+            item.setDescription(addDesc.getText());
+            date.setDate(addDate.getText());
+            item.setDueDate(date);
+            list.addItem(item);
+            //update display Area saying item was successfully added.
+            displayArea.setText(item.getDescription() + "\nwas added to the to do list.");
+            //output message if item could not be added.
+        }else displayArea.setText("Could not add item to the List.");
     }
 
     public void clearAllItems(ActionEvent actionEvent) {
@@ -46,8 +57,9 @@ public class Controller2 {
     }
 
     public void setTitle(ActionEvent actionEvent) {
-
+        //set title to info in textField
         list.setTitle(titleName.getText());
+        //update display area
         displayArea.setText("To Do List:    " + list.getTitle());
     }
 
