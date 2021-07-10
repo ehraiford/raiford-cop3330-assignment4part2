@@ -90,8 +90,9 @@ public class ToDoList {
         //set title to nextLine() from textFile
         this.title = in.nextLine();
         //local int numItems set to the nextInt() from textFile
-        if(in.hasNext())
-        this.numItems = Integer.parseInt(in.nextLine());
+        if(in.hasNext()) {
+            this.numItems = Integer.parseInt(in.nextLine());
+        }
 
         if(in.hasNext()) {
             //for loop going through numItems times

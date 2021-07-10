@@ -7,6 +7,7 @@ package ucf.assignments;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,7 +49,6 @@ public class Controller  extends App{
         if (titleInput.getText().length() > 0) {
             FileWriter writeData = new FileWriter("tempData.txt");
             writeData.write(titleInput.getText());
-            writeData.close();
             list.setTitle(titleInput.getText());
 
             displayArea.setText(titleInput.getText());
@@ -76,6 +76,8 @@ public class Controller  extends App{
 
     @FXML public void addItemScreen(ActionEvent actionEvent) throws Exception {
         File data = new File("tempData.txt");
+        list.readFromFile(data);
+
         Parent loadingList = FXMLLoader.load(getClass().getResource("AddItem.fxml"));
         Scene loadScene = new Scene(loadingList);
 
@@ -85,10 +87,11 @@ public class Controller  extends App{
         window.show();
     }
 
-    @FXML void addItem(ActionEvent actionEvent) {
-            //create new ToDoItem with info put into fields on GUI
+    @FXML void addItem(ActionEvent actionEvent) throws IOException {
         Date date = new Date();
         if(date.confirmFormat(dueDate.getText()) && date.confirmValidDate(dueDate.getText()) && !list.containsSameNameItem(itemDescription.getText())) {
+            File data = new File("tempData.txt");
+            list.readFromFile(data);
             date.setDate(dueDate.getText());
             ToDoItem item = new ToDoItem();
             item.setDescription(itemDescription.getText());
@@ -98,6 +101,8 @@ public class Controller  extends App{
             list.addItem(item);
             displayArea.setText(list.displayAll());
             result.setText("Item added.");
+            FileWriter writeData = new FileWriter("tempData.txt");
+            writeData.write(list.displayInfo());
         }else result.setText("Unable to add Item.");
     }
 
