@@ -5,48 +5,40 @@
 package ucf.assignments;
 
 public class ToDoItem {
-    //boolean for if the item is completed or not
-    boolean completed;
-    //String for the description of the item
-    String description;
-    //String for due date of the item
-    Date dueDate;
-    int month, day, year;
+   //boolean for if the item is completed or not
+   boolean completed;
+   //String for the description of the item
+   String description;
+   //String for due date of the item
+   Date dueDate;
 
-      boolean getCompleted(){
+   boolean getCompleted(){
 //        return completed boolean value
           return this.completed;
       }
-      void setCompleted(boolean input){
+   void setCompleted(boolean input){
 //    set completed boolean to value passed to function
           this.completed = input;
       }
-//
-     String getDescription(){
+   String getDescription(){
 //        return string description for the item
          return this.description;
    }
-
-    void setDescription(String input){
+   void setDescription(String input){
 //      set description to the string received by the function
         this.description = input;
     }
-
-    Date getDueDate(){
+   Date getDueDate(){
 //        return String of DueDate
         return this.dueDate;
     }
-
-    void setDueDate(Date input){
+   void setDueDate(Date input){
+          //set due date to given input
           this.dueDate = input;
-//    start while true loop
-//        ask user for due date
-//        set a string variable to the value given by user
-//        call function to confirm it is in correct format
-//        set Due date to the string if the function returns true and end the function
 
     }
-    String displayInfo(){
+   String displayInfo(){
+          //set boolean completed to a string easily readable like completed and incomplete
           String comp;
           if(this.completed)
              comp = "Completed";
@@ -54,6 +46,4 @@ public class ToDoItem {
 //        return a string formatted with the values of this Item formatted as "DESCRIPTION\nDUE DATE    COMPLETED"
        return this.description + "\n" + this.dueDate.date + "    " + comp + "\n";
     }
-
-
 }

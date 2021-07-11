@@ -4,10 +4,35 @@ ToDoList*-ToDoItem
 javafx.Application<|-- Controller
 Controller-- ToDoList
 ToDoItem<|- Date
+Controller <|- App
 class Controller{
+titleName : TextField
+addDesc : TextField
+addDate : TextField
+editOrigDesc : TextField
+editNewDesc : TextField
+editDate : TextField
+addComplete : CheckBox
+editComplete : CheckBox
+displayArea : TextArea
+list : ToDoList
 
+removeItem()
+displaySort()
+editItem()
+addItem()
+clearAllItems()
+displayIncomplete()
+displayComplete()
+displayAll()
+setTitle()
+saveToFile()
+loadFromFile()
+upadtingDescription()
 }
-
+class App{
+start()
+}
 class ToDoList{
     title : String
     items : ArrayList<ToDoItem>
@@ -19,8 +44,19 @@ class ToDoList{
     setTitle()
     getTitle()
     getItems()
-
-
+    addItem()
+    removeItem()
+    displayAll()
+    displayCompleteness()
+    saveToFile()
+    readFromFile()
+    sortList()
+    findItemSpot()
+    displayInfo()
+    editArrayItem()
+    returnArraySpotDescription()
+    returnArraySpotDueDate()
+    returnArraySpotCompleted()
 }
 
 class ToDoItem{
@@ -40,19 +76,9 @@ class ToDoItem{
 
 class Date{
     date : String
-    year : int
-    month : int
-    day : int
 
     getDate()
     setDate()
-    getYear()
-    setYear()
-    getDay()
-    setDate()
-    getMonth()
-    setMonth()
-    confirmFormat()
     confirmValidDate()
 }
 @enduml
