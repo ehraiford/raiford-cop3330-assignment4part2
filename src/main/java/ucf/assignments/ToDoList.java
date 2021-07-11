@@ -6,6 +6,7 @@ package ucf.assignments;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -17,12 +18,14 @@ public class ToDoList {
     private ArrayList<ToDoItem> items = new ArrayList<ToDoItem>();
     //int for number of items in list.
     private int numItems;
+    //boolean tracking if the list was created from a file.
+    private boolean fileRead;
 
+    public boolean getFileRead(){
+        return fileRead;
+    }
     public int getNumItems() {
         return numItems;
-    }
-    public void setNumItems(int numItems) {
-        this.numItems = numItems;
     }
     void setTitle(String input){
         //set this list's title to the input to the function
@@ -63,7 +66,7 @@ public class ToDoList {
         String display = "";
         //for loop going through entire arrayList
         for(int i = 0; i < this.items.size(); i++)
-            display = display + this.items.get(i).displayInfo();
+            display = display + this.items.get(i).displayInfo()+"\n";
             //add item's displayInfo() to string
         //return string
         return display;
@@ -82,22 +85,25 @@ public class ToDoList {
         return display;
     }
 
-    void saveToFile(File textFile){
-        //print title of to do list to textFile
-        //print number of elements in arraylist to textFile
-        //for loop going through each item on the toDoList arrayList
-            //print displayInfo() of item to textFile
+    void saveToFile() throws FileNotFoundException {
+        //create new filewriter object.
+        PrintWriter writer = new PrintWriter("data.txt");
+        //write list.displayInfo to file.
+        writer.print(displayInfo());
+        //close file
+        writer.close();
     }
 
     void readFromFile(File textFile) throws FileNotFoundException {
+        //create scanner
         Scanner in = new Scanner(textFile);
+        //set boolean of file read to true.
+        this.fileRead = true;
         //set title to nextLine() from textFile
         this.title = in.nextLine();
-        //local int numItems set to the nextInt() from textFile
-        if(in.hasNext()) {
-            this.numItems = Integer.parseInt(in.nextLine());
-        }
-
+        //read number of items from file
+        this.numItems = Integer.parseInt(in.nextLine());
+        //if there are items in the file
         if(in.hasNext()) {
             //for loop going through numItems times
             for (int ticker = 0; ticker < this.numItems; ticker++) {
@@ -111,11 +117,14 @@ public class ToDoList {
                 item.setDueDate(date);
                 //item's completed boolean is the next() from the textFile
                 String comp = in.next();
-                if (comp.compareTo("Complete") == 0)
+                if (comp.compareTo("Completed") == 0)
                     item.setCompleted(true);
                 else item.setCompleted(false);
                 //add item to to arrayList of items
                 this.addItem(item);
+                //move scanner to next item
+                in.nextLine();
+                in.nextLine();
             }
         }
     }

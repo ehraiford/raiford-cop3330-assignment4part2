@@ -11,19 +11,16 @@ class Controller{
 class ToDoList{
     title : String
     items : ArrayList<ToDoItem>
+    numItems : int
+    fileRead : boolean
 
+    getFileRead()
+    getNumItems()
     setTitle()
     getTitle()
     getItems()
-    addItem()
-    removeItem()
-    displayCompleteness()
-    saveToFile()
-    readFromFile()
-    sortList()
-    findItemSpot()
-    displayAll()
-    clearList()
+
+
 }
 
 class ToDoItem{

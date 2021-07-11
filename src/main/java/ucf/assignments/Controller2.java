@@ -6,6 +6,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.*;
+import java.util.Scanner;
+
 public class Controller2 {
     @FXML TextField titleName;
     @FXML TextField addDesc;
@@ -96,10 +99,28 @@ public class Controller2 {
         displayArea.setText("To Do List:    " + list.getTitle());
     }
 
-    public void saveToFile(ActionEvent actionEvent) {
+    public void saveToFile(ActionEvent actionEvent) throws IOException {
+        //call saveFile method in list
+        list.saveToFile();
+        //update display area
+        displayArea.setText("List Saved.");
+
     }
 
-    public void loadFromFile(ActionEvent actionEvent) {
+    public void loadFromFile(ActionEvent actionEvent) throws Exception {
+        //only do function if file hasn't already been read
+        if(!list.getFileRead()) {
+            //create new File Object.
+            File file = new File("data.txt");
+            //if file exists continue method. if not update display area saying so.
+            if (!file.createNewFile()) {
+                //call readFromFile Function
+                list.readFromFile(file);
+                //output file to display
+                displayArea.setText(list.displayInfo());
+                //output to displayArea if not info can be read from file.
+            } else displayArea.setText("File does not exist.");
+        }else displayArea.setText("File has already been read.");
     }
 
     public void updatingDescription(ActionEvent actionEvent) {
