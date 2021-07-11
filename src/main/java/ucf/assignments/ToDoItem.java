@@ -5,7 +5,7 @@
 package ucf.assignments;
 
 public class ToDoItem {
-   //boolean for if the item is completed or not
+    //boolean for if the item is completed or not
    boolean completed;
    //String for the description of the item
    String description;
@@ -26,6 +26,7 @@ public class ToDoItem {
    }
    void setDescription(String input){
 //      set description to the string received by the function
+       if(input.length() < 257 && input.length() > 0)
         this.description = input;
     }
    Date getDueDate(){

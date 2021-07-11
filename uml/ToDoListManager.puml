@@ -76,7 +76,9 @@ class ToDoItem{
 
 class Date{
     date : String
-
+    day: int
+    month : int
+    year : int
     getDate()
     setDate()
     confirmValidDate()

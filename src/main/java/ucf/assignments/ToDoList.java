@@ -107,26 +107,31 @@ public class ToDoList {
         if(in.hasNext()) {
             //for loop going through numItems times
             for (int ticker = 0; ticker < this.numItems; ticker++) {
-                //create new toDoItem
-                ToDoItem item = new ToDoItem();
-                //item's description is the nextLine() from textFile
-                item.setDescription(in.nextLine());
-                //item's due date is the next() from the textFile
-                Date date = new Date();
-                date.setDate(in.next());
-                item.setDueDate(date);
-                //item's completed boolean is the next() from the textFile
-                String comp = in.next();
-                if (comp.compareTo("Completed") == 0)
-                    item.setCompleted(true);
-                else item.setCompleted(false);
-                //add item to to arrayList of items
-                this.addItem(item);
-                //move scanner to next item
-                in.nextLine();
-                in.nextLine();
+                if (in.hasNext()) {
+                    //create new toDoItem
+                    ToDoItem item = new ToDoItem();
+                    //item's description is the nextLine() from textFile
+                    item.setDescription(in.nextLine());
+                    //item's due date is the next() from the textFile
+                    Date date = new Date();
+                    date.setDate(in.next());
+                    item.setDueDate(date);
+                    //item's completed boolean is the next() from the textFile
+                    String comp = in.next();
+                    if (comp.compareTo("Completed") == 0)
+                        item.setCompleted(true);
+                    else item.setCompleted(false);
+                    //add item to to arrayList of items
+                    this.addItem(item);
+                    //numItems - 1 since the class normally counts them itself
+                    this.numItems--;
+                    //move scanner to next item
+                    in.nextLine();
+                    in.nextLine();
+                }
             }
         }
+        in.close();
     }
 
     void sortList(){
