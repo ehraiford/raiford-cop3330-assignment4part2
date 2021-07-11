@@ -32,12 +32,12 @@ public class ToDoItem {
         this.description = input;
     }
 
-        Date getDueDate(){
+    Date getDueDate(){
 //        return String of DueDate
-            return this.dueDate;
+        return this.dueDate;
     }
-//
-       void setDueDate(Date input){
+
+    void setDueDate(Date input){
           this.dueDate = input;
 //    start while true loop
 //        ask user for due date

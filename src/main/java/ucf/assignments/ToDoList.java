@@ -14,7 +14,7 @@ public class ToDoList {
     //String for the title of the list
     private String title;
     //array list of the items on the to do list
-    private ArrayList<ToDoItem> items = new ArrayList<>();
+    private ArrayList<ToDoItem> items = new ArrayList<ToDoItem>();
     //int for number of items in list.
     private int numItems;
 
@@ -157,5 +157,24 @@ public class ToDoList {
         info = info + numItems + "\n";
         info = info + this.displayAll();
         return info;
+    }
+
+    void editArrayItem(String description, boolean complete, Date date, int spot){
+        //update the info for the item at the given spot in the arrayList
+        this.items.get(spot).setDueDate(date);
+        this.items.get(spot).setDescription(description);
+        this.items.get(spot).setCompleted(complete);
+    }
+
+    String returnArraySpotDescription(int i){
+        return items.get(i).getDescription();
+    }
+
+    String returnArraySpotDueDate(int i){
+        return items.get(i).getDueDate().getDate();
+    }
+
+    boolean returnArraySpotCompleted(int i){
+        return items.get(i).getCompleted();
     }
 }

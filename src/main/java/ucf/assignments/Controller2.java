@@ -31,13 +31,25 @@ public class Controller2 {
     }
 
     public void editItem(ActionEvent actionEvent) {
+        //confirm item with original description is in the list.
+        int spot = list.findItemSpot(editOrigDesc.getText());
+        //create date item with the given info
+        Date date = new Date();
+        date.setDate(editDate.getText());
+        //if it's in there and the provided data is valid, update the variables of the toDoItem with the info in the corresponding fields
+        if(spot != -1 && date.confirmValidDate(editDate.getText()) && editNewDesc.getText().length() > 0 && editNewDesc.getText().length() < 257) {
+            list.editArrayItem(editNewDesc.getText(), editComplete.isSelected(), date, spot);
+            displayArea.setText("The Item has been updated.");
+
+            //if it's not in there, update displayArea with that info.
+        }else displayArea.setText("The item could not be updated.");
     }
 
     public void addItem(ActionEvent actionEvent) {
         //create date object
         Date date = new Date();
         //if the item isn't already in the list and the date is valid, create an item from the data and add it to the list
-        if(list.findItemSpot(addDesc.getText()) != -1 && date.confirmValidDate(addDate.getText())){
+        if(list.findItemSpot(addDesc.getText()) == -1 && date.confirmValidDate(addDate.getText())){
             ToDoItem item = new ToDoItem();
             item.setCompleted(addComplete.isSelected());
             item.setDescription(addDesc.getText());
@@ -88,5 +100,18 @@ public class Controller2 {
     }
 
     public void loadFromFile(ActionEvent actionEvent) {
+    }
+
+    public void updatingDescription(ActionEvent actionEvent) {
+        //search for location of item in list
+        int spot = list.findItemSpot(editOrigDesc.getText());
+        //if an item with the description being typed into the field is found, automatically populate the fields with that info
+        if(spot != -1){
+            editDate.setText(list.returnArraySpotDueDate(spot));
+            editNewDesc.setText(list.returnArraySpotDescription(spot));
+            editComplete.setSelected(list.returnArraySpotCompleted(spot));
+            //update displayArea stating item found
+            displayArea.setText("Item found.");
+        }
     }
 }
