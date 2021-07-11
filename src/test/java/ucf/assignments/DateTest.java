@@ -19,7 +19,7 @@ class DateTest {
         String string = "1942-12-12";
         Date date = new Date();
 
-        assertTrue(date.confirmFormat(string));
+        assertTrue(date.confirmValidDate(string));
     }
 
     @Test
@@ -35,7 +35,7 @@ class DateTest {
         String string = "1942-2-2";
         Date date = new Date();
 
-        assertFalse(date.confirmFormat(string));
+        assertFalse(date.confirmValidDate(string));
     }
 
     @Test
@@ -51,6 +51,6 @@ class DateTest {
         String string = "19421231";
         Date date = new Date();
 
-        assertFalse(date.confirmFormat(string));
+        assertFalse(date.confirmValidDate(string));
     }
 }

@@ -49,8 +49,8 @@ public class Controller2 {
     @FXML void addItem(ActionEvent actionEvent) {
         //create date object
         Date date = new Date();
-        //if the item isn't already in the list and the date is valid, create an item from the data and add it to the list
-        if(list.findItemSpot(addDesc.getText()) == -1 && date.confirmValidDate(addDate.getText())){
+        //if the item isn't already in the list and the date is valid and description is within required length, create an item from the data and add it to the list
+        if(list.findItemSpot(addDesc.getText()) == -1 && date.confirmValidDate(addDate.getText()) && addDesc.getText().length() > 0 && addDesc.getText().length() < 257){
             ToDoItem item = new ToDoItem();
             item.setCompleted(addComplete.isSelected());
             item.setDescription(addDesc.getText());
